@@ -1,7 +1,12 @@
 :root {
-	--background: white;
-	--foreground: black;
+	--background: black;
+	--foreground: white;
+	--highlight: green;
 	
-	--font-family: "Arial";
-	--font-size: 20px;
+	/* --font-family: "Arial"; */
+	--font-size: 16px;
+	--font-logo: "Norican";
+	--font-main: "Quicksand";
+
+	--button-padding-big: 0.8rem 1.2rem;
 }

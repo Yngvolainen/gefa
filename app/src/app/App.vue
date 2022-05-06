@@ -1,5 +1,6 @@
 <template>
-	<ul>
+	<Header />
+	<!-- <ul>
 		<li>
 			<router-link to="/">til /</router-link>
 		</li>
@@ -7,9 +8,19 @@
 		<li>
 			<router-link to="/mike">til /mike</router-link>
 		</li>
-	</ul>
+	</ul> -->
 	<RouterView />
 </template>
+
+<script>
+	import Header from '../components/Header.vue'
+
+	export default {
+		components: {
+			Header
+		}
+	}
+</script>
 
 <style>
 	@import '../style/reset.css';

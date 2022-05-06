@@ -1,37 +1,39 @@
 <template>
-	<div v-if="loading">...</div>
-	<pre v-else>{{ JSON.stringify(result, null, 3) }}</pre>
+    <div class="home">
+        <choosepayers :title="titles.single" :link="links.single"></choosepayers>
+        <choosepayers :title="titles.multiple" :link="links.multiple"></choosepayers>
+    </div>
 </template>
 
 <script>
-	import sanity from '../sanity.js'
-	import query from '../groq/home.groq?raw'
+import choosepayers from '../components/Choosepayers.vue'
 
-
-	export default {
-		data() {
-			return {
-				loading: true,
-				result: null
-			}
-		},
-		
-		async created() {
-			// const query = groq
-			const params = { type: 'project' };
-
-			this.result = await sanity.fetch(query, params);
-			this.loading = false;
-
-			/* head tags */
-			const head = {
-				title: 'Frontpage',
-				description: 'Frontpage description'
-			}
-
-			document.title = head.title;
-			document.querySelector('meta[name="description"]').setAttribute('content', head.description)
-			document.querySelector('meta[property="og:description"]').setAttribute('content', head.description)
-		}
-	}
+export default {
+    components: {
+        choosepayers,
+    },
+    data() {
+        return {
+            titles: {
+                single: 'SINGLE PAYER',
+                multiple: 'MULTIPLE PAYERS'
+            },
+            links: {
+                single: 'single',
+                multiple: 'multiple'
+            }
+        }
+    }
+}
 </script>
+
+<style>
+    .home {
+        height: 90%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-evenly; 
+        align-items: center;
+    }
+
+</style>
