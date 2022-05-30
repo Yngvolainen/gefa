@@ -1,15 +1,8 @@
 <template>
-	<Header />
-	<!-- <ul>
-		<li>
-			<router-link to="/">til /</router-link>
-		</li>
-
-		<li>
-			<router-link to="/mike">til /mike</router-link>
-		</li>
-	</ul> -->
-	<RouterView />
+	<div class="wrapper">
+		<Header />
+		<RouterView />
+	</div>
 </template>
 
 <script>
@@ -27,4 +20,11 @@
 	@import '../style/variables.css';
 	@import '../style/fonts.css';
 	@import '../style/style.css';
+
+	.wrapper {
+		width: 100%;
+		margin: 0 auto;
+		max-width: 768px;
+		max-height: 1024px;
+	}
 </style>

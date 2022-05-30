@@ -1,13 +1,18 @@
 <template>
     <div class="menu">
-        <ul @click="$emit('toggle')" >
+        <ul @click="$emit('toggle')">
             <li>
-                <router-link :to="{ name: 'single'}" class="menu__link"   >Single payer</router-link>
+                <router-link :to="{ name: 'single'}" class="menu__link">Single payer</router-link>
             </li>
+            <p>---</p>
             <li>
-                <router-link :to="{ name: 'multiple'}" class="menu__link"  >Multiple payers</router-link>
+                <router-link :to="{ name: 'multiple'}" class="menu__link">Multiple payers</router-link>
             </li>
-            <li>skep</li>
+            <p>---</p>
+            <li>
+                <router-link :to="{ name: 'about'}"
+                class="menu__link">About</router-link>
+                </li>
         </ul>
     </div>
 </template>
@@ -16,7 +21,6 @@
 export default {
     data() {
         return {
-            // menuVisible: false
         }
     }
 }

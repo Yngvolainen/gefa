@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{ name: `${link}` }" class="choosepayers">
+    <router-link :to="{ name: link }" class="choosepayers">
         <h2>{{title}}</h2>
     </router-link>
 </template>

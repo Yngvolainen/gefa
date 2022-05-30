@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <router-link :to="{ name: 'home' }" class="header__logo">
+        <router-link :to="{name: 'home'}" class="header__logo">
             <h1>gefa</h1>
         </router-link>
 
