@@ -31,7 +31,6 @@ export default {
         console.log(this.Payments)
 
         this.splitPayments(this.Payments)
-        this.splitPayments2(this.Payments)
     },
     methods: {
         splitPayments(payments) {
@@ -64,7 +63,7 @@ export default {
                 // Disse to sammen jobber seg innover ettersom vi eliminerer de som har betalt eller mottat det de skal. Indre loop stopper når siste verdi er ubetydelig liten, men 0 gir oss trøbbel med avrundings"feil" (ihvertfall i en liten periode i testfasen)
                 for( let i = 0 ; sortedValuesPaid[j] > 0.01 ; i++ ) {
                     
-                    // Finn den laveste verdien av første- og sistemann som gjenstår på lista. Vi finner laveste verdi fordi ingen skal betale noen mer enn differansen vedkommende har fra snittet. Første verdi vil altid være negativ, vi gjør den positiv. Math.abs funket ikke som forventet her...
+                    // Finn den laveste verdien av første- og sistemann som gjenstår på lista. Vi finner laveste verdi fordi ingen skal betale noen mer eller motta mer enn differansen vedkommende har fra snittet. Første verdi vil altid være negativ, vi gjør den positiv. Math.abs funket ikke som forventet her..., men Math.min returnerer laveste verdi
                     // 
                     let gjeld = Math.min(-(sortedValuesPaid[i]), sortedValuesPaid[j]);
                     console.log(gjeld)
@@ -76,146 +75,13 @@ export default {
 
                     // Dersom beløpet er null er det uinteressant å dytte det inn i arrayet, ihvertfall i appens nåværende tilstand (mvp...)
                     if(gjeld > 0) {
-                        console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${gjeld.toFixed(2)}`);
-
                         this.results.push({giver: sortedPeople[i], receiver: sortedPeople[j], amount: gjeld.toFixed(2)})
-
-                    }
-
-                }
-                // ----- some leftover code from all the fun and not so fun experiments
-                // let mindiff = snitt - sortedValuesPaid[i]
-                // console.log(mindiff)
-    
-                // let maxdiff = sortedValuesPaid[j] - snitt
-                // console.log(maxdiff)
-    
-                // console.log(maxdiff - mindiff)
-                
-                // if(mindiff > 0) {
-                //     console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${mindiff}`)
-                    
-                //     // console.log(`${sortedPeople[i]} owes ${sortedPeople[j-1]} $${mindiff - maxdiff}`)
-                //     // console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${diff1}`)
-
-                // }
-                // if(mindiff < 0) {
-                //     console.log(`${sortedPeople[j]} owes ${sortedPeople[i]} $${-mindiff}`)
-                // }
-                // if(mindiff > maxdiff) {
-                //     j--
-                //     console.log(`${sortedPeople[i]} poops ${-mindiff} from ${sortedPeople[i-1]}`)
-                // }
-                // console.log(sortedPeople[i], diff, sortedPeople[j])
-
-                // sortedValuesPaid[i] += diff
-
-                // let check = sortedValuesPaid[j] -= diff 
-                // console.log(check)
-
-                // console.log(sortedValuesPaid)
-
-                // sortedValuesPaid[j] += diff
-                // console.log(sortedValuesPaid[j])
-
-                // if (diff > 0){
-                //     console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${diff}`)
-                // } 
-                // if (diff < 0) {
-                //     console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${-diff}`)
-                // }
-
-                // console.log(diff)
-                // console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${diff}`)
-
-                // sortedValuesPaid[i] -= diff
-                // sortedValuesPaid[j] += diff
-
-                // if(sortedValuesPaid[j] > snitt){
-                //     console.log('yeah')
-                // }
-
-                // if(diff > 0) {
-                //     console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${diff}`)
-                //     j--
-                // }
-
-                // console.log(sortedValuesPaid[i])
-
-                // if(sortedValuesPaid[i] === sortedValuesPaid[j]){
-                //     console.log('like!')
-                // }
-
-                // if(sortedValuesPaid[i] < snitt)  {
-                    
-                //     let nydiff = sortedValuesPaid[j] - snitt
-                //     console.log(nydiff)
-                //     // console.log(snitt - sortedValuesPaid[i])
-                //     console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${diff}`)
-
-                // } else {
-                //     console.log('faen')
-                // }
-                // let debt = Math.min(-(sortedValuesPaid[i]), sortedValuesPaid[j]);
-                // console.log(debt)
-
-                // sortedValuesPaid[i] += debt;
-                // sortedValuesPaid[j] -= debt;
-
-                // console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${debt.toFixed(2)}`);
-
-                    // let n = sortedValuesPaid[i] - snitt
-                    // console.log(n)
-                    // sortedValuesPaid[i] -= n
-                    // sortedValuesPaid[j] += n
-
-                    // console.log(sortedValuesPaid[i].toFixed(2))
-                    // console.log(sortedValuesPaid[j].toFixed(2))
- 
-                 //    if (n < snitt) {
-                 //        j--
-                 //        console.log(sortedValuesPaid[j] - snitt)
-                 //    } else {
-                 //         j--
-                 //         console.log('poop')
-                 //         console.log(sortedValuesPaid[j] - snitt)
-                 //    }
-                 //    j--;
-                 //    console.log(sortedPeople[i], (sortedValuesPaid[j] - snitt))
-            }
-        },
-        splitPayments2(payments) {
-            const people = Object.keys(payments);
-            const valuesPaid = Object.values(payments);
-
-            const sum = valuesPaid.reduce((acc, curr) => curr + acc);
-            const mean = sum / people.length;
-
-            const sortedPeople = people.sort((personA, personB) => payments[personA] - payments[personB]);
-            const sortedValuesPaid = sortedPeople.map((person) => payments[person] - mean);
-
-            let i = 0;
-            let j = sortedPeople.length - 1;
-            // let debt;
-
-                while (i < j) {
-                let debt = Math.min(-(sortedValuesPaid[i]), sortedValuesPaid[j]);
-                sortedValuesPaid[i] += debt;
-                sortedValuesPaid[j] -= debt;
-
-                console.log(`${sortedPeople[i]} owes ${sortedPeople[j]} $${debt.toFixed(2)}`);
-
-                    if (sortedValuesPaid[i] === 0) {
-                    i++;
-                    }
-
-                    if (sortedValuesPaid[j] === 0) {
-                    j--;
                     }
                 }
             }
         }
     }
+}
 </script>
 
 <style>
