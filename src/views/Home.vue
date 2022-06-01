@@ -1,6 +1,7 @@
 <template>
     <div class="home">
         <choosepayers :title="titles.single" :link="links.single"></choosepayers>
+        
         <choosepayers :title="titles.multiple" :link="links.multiple"></choosepayers>
     </div>
 </template>

@@ -5,16 +5,20 @@
                 err...you might want to check those numbers again
             </p>
         </div>
+
         <div v-else>
             <div>
                 <p>Seeing as you were {{participants}} people, and the bill was ${{amount}}, everybody owes you:</p>
             </div>
+
             <div>
                 <h2>$ {{result.toFixed(2)}}</h2>
             </div>
+
             <div>
                 <img src="/images/fireworks.gif" alt="" class="singleresult__fire">
             </div>
+
             <audio controls autoplay class="seingleresult__audio">
                 <source src="/audio/flute.wav">
             </audio>
@@ -36,7 +40,6 @@ export default {
     },
     methods: {
         getPaid() {
-            // console.log('calculating the getPaid thingy')
             let sum = this.amount/this.participants
             this.result = sum
         },

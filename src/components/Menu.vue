@@ -4,15 +4,19 @@
             <li>
                 <router-link :to="{ name: 'single'}" class="menu__link">Single payer</router-link>
             </li>
+
             <p>---</p>
+
             <li>
                 <router-link :to="{ name: 'multiple'}" class="menu__link">Multiple payers</router-link>
             </li>
+
             <p>---</p>
+            
             <li>
                 <router-link :to="{ name: 'about'}"
                 class="menu__link">About</router-link>
-                </li>
+            </li>
         </ul>
     </div>
 </template>

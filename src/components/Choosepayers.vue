@@ -10,11 +10,6 @@ export default {
         'title',
         'link'
     ]
-    // data() {
-    //     return {
-
-    //     }
-    // }
 }
 </script>
 

@@ -5,14 +5,7 @@ import MultipleResults from './views/MultipleResults.vue';
 import SingleResults from './views/SingleResults.vue';
 import About from './components/About.vue';
 
-// import ProjectPage from './views/ProjectPage.vue';
-
 export default [
-	// { 
-	// 	name: 'projectPage', 
-	// 	path: '/:projectSlug', // når vi navigerer til /mike, fra ProjectPage.vue vil $route.params.projectSlug være "mike"
-	// 	component: ProjectPage 
-	// },
 	{
 		name: 'multiple',
 		path: '/multiple',

@@ -1,19 +1,25 @@
 <template>
     <div class="single">
         <h2>single payer</h2>
+
         <section class="single__section">
             <label for="singlepayeramount">total amount</label>
+
             <br>
+
             <input v-model="amount" type="number" name="amount" id="singlepayeramount" onclick="this.select()">
         </section>
     
         <section class="single__section">
             <label for="singlepayerparticipants">number of participants<br>(inlcuding payer)</label>
+
             <br>
+
             <input v-model="participants" type="number" name="participants" id="singlepayerparticipants" min="2" max="999" onclick="this.select()">
         </section>
 
         <p>(maybe turn down the volume before you: )</p>
+
         <section class="single__section">
             <router-link class="single__link" :to="{name: 'singleresults'}">
                 GET PAID
@@ -22,6 +28,7 @@
     </div>
 
 </template>
+
 <script>
 export default {
     data() {
@@ -33,10 +40,10 @@ export default {
     beforeUnmount() {
         this.$store.state.singleParticipant = this.participants
         this.$store.state.singleAmount = this.amount
-        // console.log('unmounting singleinput')
     }
 }
 </script>
+
 <style scoped>
     label {
         font-size: 1.5rem;
