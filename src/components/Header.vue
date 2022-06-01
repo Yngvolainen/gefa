@@ -9,6 +9,7 @@
                 <img src="/images/menu-white.svg" alt="menu">
             </button>
         </menu>
+        
         <Menu v-if="menuVisible" @toggle="toggleMenu" />
     </header>
 </template>

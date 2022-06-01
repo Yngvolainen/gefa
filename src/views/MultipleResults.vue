@@ -5,6 +5,7 @@
                 Nobody owes anyone diddly squat, or the difference in amounts you're trying to split is too miniscule to be worthy of considering. (or it could be a bug in the code... 😬)
             </p>
         </div>
+        
         <div v-else>
             <h3 v-for="result in results" class="multires__list">
                 {{result.giver}} owes {{result.receiver}} ${{result.amount}}
