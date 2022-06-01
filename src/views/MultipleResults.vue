@@ -23,12 +23,15 @@ export default {
         }
     },
     mounted() {
+        // hjelp til å forstå logikken har jeg fått herfra
+        // https://stackoverflow.com/questions/974922/algorithm-to-share-settle-expenses-among-a-group
+        // og ja, noe av koden er løftet direkte.
 
-        // Create a new object from the array of objects, with a little help from
+        // Lag et nytt object, fra arrayet med objekter. Med hjelp fra
         // https://stackoverflow.com/questions/42974735/create-object-from-array
 
         this.Payments = this.participants.reduce((acc, cur) => ({ ...acc, [cur.name]: cur.amount }), {})
-        console.log(this.Payments)
+        // console.log(this.Payments)
 
         this.splitPayments(this.Payments)
     },
@@ -52,7 +55,7 @@ export default {
             const sortedPeople = people.sort((personA, personB) => payments[personA] - payments[personB]);
             // console.log(sortedPeople)
 
-            // Sorter verdiene, trekk ifra snitt for å finne beløpet de skylder eller skal motta. Nå har vi to arrays, der personene og beløpet de skylder/skal motta ligger i samme rekkefølge
+            // Sorter verdiene, trekk ifra snitt for å finne beløpet de skylder eller skal motta. Nå har vi to arrays, der personene og beløpet de skylder/skal motta i forhold til snittet, ligger i samme rekkefølge
             const sortedValuesPaid = sortedPeople.map(person => payments[person] - snitt);
             // console.log(sortedValuesPaid)
                 
@@ -69,11 +72,11 @@ export default {
                     console.log(gjeld)
 
                     // flytt "penger" fra den som har betalt minst til den som har betalt mest. Dette vil gjenta seg i indre loop til førstemann på listen kan elimineres
-                    console.log(sortedValuesPaid)
+                    // console.log(sortedValuesPaid)
                     sortedValuesPaid[i] += gjeld
                     sortedValuesPaid[j] -= gjeld
 
-                    // Dersom beløpet er null er det uinteressant å dytte det inn i arrayet, ihvertfall i appens nåværende tilstand (mvp...)
+                    // Dersom beløpet er null er det uinteressant å dytte det inn i resultatlisten, ihvertfall i appens nåværende tilstand (mvp...)
                     if(gjeld > 0) {
                         this.results.push({giver: sortedPeople[i], receiver: sortedPeople[j], amount: gjeld.toFixed(2)})
                     }
