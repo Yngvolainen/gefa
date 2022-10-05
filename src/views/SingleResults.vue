@@ -8,11 +8,11 @@
 
         <div v-else>
             <div>
-                <p>Seeing as you were {{participants}} people, and the bill was ${{amount}}, everybody owes you:</p>
+                <p>Seeing as you were {{participants}} people, and the bill was {{denomination}} {{amount}}, everybody owes you:</p>
             </div>
 
             <div>
-                <h2>$ {{result.toFixed(2)}}</h2>
+                <h2>{{denomination}} {{result.toFixed(2).replace('.00', '.-')}}</h2>
             </div>
 
             <div>
@@ -32,17 +32,23 @@ export default {
         return {
             participants: this.$store.state.singleParticipant,
             amount: this.$store.state.singleAmount,
-            result: null
+            result: null,
+            denomination: null
         }
     },
     mounted() {
-        this.getPaid()
+        this.getPaid(),
+        this.getDenomination()
     },
     methods: {
         getPaid() {
             let sum = this.amount/this.participants
             this.result = sum
         },
+        getDenomination() {
+            this.denomination = this.$store.getters.getDenomination
+            console.log(this.denomination)
+        }
     }
 }
 </script>

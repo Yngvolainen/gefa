@@ -12,7 +12,13 @@
             </li>
 
             <p>---</p>
+
+            <li>
+                <router-link :to="{ name: 'setup'}" class="menu__link">Setup</router-link>            
+            </li>
             
+            <p>---</p>
+
             <li>
                 <router-link :to="{ name: 'about'}"
                 class="menu__link">About</router-link>

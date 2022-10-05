@@ -8,11 +8,13 @@
 
 <script>
 import choosepayers from '../components/Choosepayers.vue'
+import getCurrencyMixin from '../mixins/getcurrency.js'
 
 export default {
     components: {
         choosepayers,
     },
+    mixins: [getCurrencyMixin],
     data() {
         return {
             titles: {
@@ -22,8 +24,11 @@ export default {
             links: {
                 single: 'single',
                 multiple: 'multiple'
-            }
+            },
         }
+    },
+    created() {
+        this.getCurrencies()
     }
 }
 </script>

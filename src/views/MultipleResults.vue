@@ -8,7 +8,7 @@
         
         <div v-else>
             <h3 v-for="result in results" class="multires__list">
-                {{result.giver}} owes {{result.receiver}} ${{result.amount}}
+                {{result.giver}} owes {{result.receiver}} {{denomination}} {{result.amount.replace('.00', '.-')}}
             </h3>
         </div>
     </div>
@@ -20,10 +20,13 @@ export default {
         return {
             participants: this.$store.state.participants,
             Payments: null,
-            results: []
+            results: [],
+            denomination: null
         }
     },
     mounted() {
+        this.getDenomination()
+
         // hjelp til å forstå logikken har jeg fått herfra
         // https://stackoverflow.com/questions/974922/algorithm-to-share-settle-expenses-among-a-group
         // og ja, noe av koden er løftet direkte.
@@ -36,7 +39,15 @@ export default {
 
         this.splitPayments(this.Payments)
     },
+    // created() {
+        // console.log(this.denomination)
+        // this.denomination = this.store
+    // },  
     methods: {
+        getDenomination() {
+            this.denomination = this.$store.getters.getDenomination
+            console.log(this.denomination)
+        },
         splitPayments(payments) {
             // Del objektet inn i to arrays
             const people = Object.keys(payments)
