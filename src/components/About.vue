@@ -1,8 +1,7 @@
 <template>
     <div class="about">
-        <p>This is an about page</p>
-        <br>
-        <p>about about about</p>
+        <p>Splitting the bills for you, because socialism...(?)</p>
+        <p>All for one and one for all, and all that.</p>
     </div>
 </template>
 <script>
